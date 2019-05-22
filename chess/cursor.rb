@@ -24,10 +24,10 @@ KEYMAP = {
 }
 
 MOVES = {
-  left: [0, -1],
-  right: [0, 1],
-  up: [-1, 0],
-  down: [1, 0]
+  left: [-1, 0],
+  right: [1, 0],
+  up: [0, -1],
+  down: [0, 1]
 }
 
 class Cursor
@@ -103,11 +103,11 @@ class Cursor
   end
   
   def move(key)
-    new_x = cursor_pos[0] + MOVES[key][0]
-    new_y = cursor_pos[1] + MOVES[key][1]
+    new_x = cursor_pos[1] + MOVES[key][0]
+    new_y = cursor_pos[0] + MOVES[key][1]
     if new_x >= 0 && new_x <= 7 && new_y >= 0 && new_y <= 7  
-      cursor_pos[0] += MOVES[key][0]
-      cursor_pos[1] += MOVES[key][1]
+      cursor_pos[1] += MOVES[key][0]
+      cursor_pos[0] += MOVES[key][1]
     else
       get_input
     end
