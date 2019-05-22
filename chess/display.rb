@@ -13,9 +13,12 @@ class Display
     board.rows.each_with_index do |row, x|
       rendered_row = row.map.with_index do |space, y|
         if [x,y] == cursor.cursor_pos
-          space.inspect.on_white
+          space.inspect.on_magenta
         elsif [x,y] == cursor.selected_pos
           space.inspect.on_yellow
+        elsif space.valid == true
+          #valid_positions.include?([x,y])
+          space.inspect.on_white
         else
           space.inspect 
         end

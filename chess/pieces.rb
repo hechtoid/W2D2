@@ -1,11 +1,11 @@
 class Piece
-  attr_accessor :position
+  attr_accessor :position, :valid
   attr_reader :color, :board
-  def initialize( board, color = 'green' ) # position)
+  def initialize(board, color = 'green' ) # position)
     @board = board
     @color = color
-
     @position = update_pos 
+    @valid = false
   
   end
 
@@ -38,11 +38,38 @@ class Piece
 
 end
 
+module Slideable
+  def validate_pos
+    valids=[]
+    p self.update_pos 
+    # x,y = @position.dup
+   # p "x is #{x}"
+    #p "y is #{y}"
+    # until x==7
+    #   x+=1
+    #   valids << [x,y]
+    # end
+    # until x==0
+    #   x-=1
+    #   valids << [x,y]
+    # end
+    # until y==7
+    #   y+=1
+    #   valids << [x,y]
+    # end
+    # until y==0
+    #   y-=1
+    #   valids << [x,y]
+    # end
+    # valids.each { |pos| board[*pos].valid = true } 
+    
+  end
+end
 
 class NullPiece < Piece
   # def initialize
   # end
-
+ include Slideable
   def inspect
     "<null>".light_black
   end
@@ -55,6 +82,7 @@ class NullPiece < Piece
 end
 
 class Rook < Piece
+  include Slideable
   # def inspect
   #   "<ROOK>".green
   # end
@@ -64,33 +92,42 @@ class Rook < Piece
 end
 
 class Bishop < Piece
+   include Slideable
   def type
     "BISH"
   end
 end
 
 class Knight < Piece
+   include Slideable
   def type
     "KNGT"
   end
 end
 
 class Queen < Piece
+   include Slideable
   def type
-    "QWEN"
+    "QUUN"
   end
 end
 
 class King < Piece
+   include Slideable
   def type
     "KANG"
   end
 end
 
 class Pawn < Piece
+   include Slideable
   def type
     "PAWN"
   end
 end
+
+
+
+
 
 

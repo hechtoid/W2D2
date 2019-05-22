@@ -93,18 +93,11 @@ class Cursor
 
     if key == :return && selected_pos.nil?
       @selected_pos = cursor_pos.dup
+      @board[*selected_pos].validate_pos
     elsif key == :return && !selected_pos.nil?
-      # p @board[cursor_pos.dup] 
-      p cursor_pos.dup
-      p board[*cursor_pos.dup]
       board.move_piece(selected_pos, cursor_pos.dup)
-      p board[*cursor_pos.dup].update_pos
-      # p @board[cursor_pos.dup] 
-      # p board[0,0]
-      # p @selected_pos
-      # p cursor_pos.dup
-      #@board[cursor_pos].position
       @selected_pos = nil
+     
     end
 
   end

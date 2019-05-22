@@ -25,7 +25,7 @@ class Board
     rows[row][col]
   end
 
-  def []=( *pos, val)
+  def []=(*pos, val)
     row, col = pos
     rows[row][col] = val
   end
@@ -40,7 +40,6 @@ class Board
       raise NoPieceError, "No Piece There #{start_pos}"
     else
       piece = self[*start_pos]
-      p piece
       self[*end_pos] = piece
       self[*start_pos] = NullPiece.new(self)
     end
